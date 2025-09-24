@@ -1,1 +1,5 @@
-
+{
+  "daily_qc": ["Temperature log", "Control pass/fail", "Operator initials"],
+  "monthly_tasks": ["Lot review", "Inventory audit"],
+  "annual": ["IQCP update", "CMS inspection prep"]
+}
