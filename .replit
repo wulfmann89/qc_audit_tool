@@ -1,2 +1,9 @@
-run = "npm run dev"
+run = "node backend/index.js"
 language = "nodejs"
+modules = ["nodejs-20"]
+
+[nix]
+channel = "stable-25_05"
+
+[agent]
+expertMode = true
