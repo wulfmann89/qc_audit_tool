@@ -1,4 +1,4 @@
-run = "node backend/server/index.js"
+run = "npm run dev"
 language = "nodejs"
 modules = ["nodejs-20"]
 

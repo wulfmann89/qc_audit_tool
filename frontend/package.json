@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,7 +14,8 @@
   "description": "",
   "dependencies": {
     "react-dom": "^19.1.1",
-    "vite": "^7.1.7"
+    "vite": "^7.1.7",
+    "react": "^19.1.1"
   },
   "devDependencies": {
     "@types/react": "^19.1.13",
