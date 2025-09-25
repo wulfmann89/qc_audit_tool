@@ -1,6 +1,6 @@
 // backend/routes/qc.js
-const express = require("express");
-const router = express.Router();
+import { Router } from "express";
+const router = Router();
 
 /**
  * QC Scheduler Module
@@ -85,4 +85,19 @@ router.get("/clia", (req, res) => {
   });
 });
 
-module.exports = router;
+/**
+ * Workflow Evaluation Module
+ * Returns mock workflow metrics and recommendations
+ */
+router.get("/workflow", (req, res) => {
+  res.json({
+    iqcp: {
+      preAnalytic: 'Sample integrity risk: low',
+      analytic: 'Instrument drift: moderate',
+      postAnalytic: 'Report delay: minimal',
+  },
+  checklist:['SOP uploaded', 'Logs complete', 'Audit score: 92%'],
+  })
+})
+
+export default router;

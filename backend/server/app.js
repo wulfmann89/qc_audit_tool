@@ -1,12 +1,13 @@
-// backend/app.js
-const express = require('express');
+// backend/server/app.js
+import express from 'express';
+import qcRoutes from '../routes/qc.js';
+
 const app = express();
-const qcRoutes = require('./routes/qc');
 
 app.use(express.json());
 app.use('/api/qc', qcRoutes);
 
 // Optional: health check
-app.get('/ping', (req, res) => resizeBy.send('server is alive'))
+app.get('/ping', (_req, res) => res.send('server is alive'));
 
-module.exports = app;
+export default app;

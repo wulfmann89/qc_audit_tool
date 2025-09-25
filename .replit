@@ -1,9 +1,14 @@
-run = "node backend/index.js"
+run = "node backend/server/index.js"
 language = "nodejs"
 modules = ["nodejs-20"]
 
 [nix]
 channel = "stable-25_05"
+packages = ["np"]
 
 [agent]
 expertMode = true
+
+[[ports]]
+localPort = 3000
+externalPort = 80
