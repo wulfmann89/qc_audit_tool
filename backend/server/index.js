@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import qcRoutes from '../routes/qc.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,6 +12,9 @@ const __dirname = path.dirname(__filename);
 
 // Serve static frontend
 app.use(express.static(path.join(__dirname, '../../frontend/dist')));
+
+// Mount backend routes
+app.use('/api/qc', qcRoutes);
 
 // Optional: serve index.html on root
 app.get('/', (_, res) => {

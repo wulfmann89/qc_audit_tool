@@ -10,7 +10,7 @@ router.get("/schedule", (req, res) => {
   res.json({
     tasks: ["Daily QC", "Monthly QC", "Annual Review"],
     overdue: ["Monthly QC"],
-    SignedOff: ["Daily QC"],
+    signedOff: ["Daily QC"],
   });
 });
 

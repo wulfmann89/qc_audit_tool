@@ -31,8 +31,8 @@ export default function QCScheduler() {
         {data?.tasks.map((task) => (
           <li key={task}>
             {task}
-            {data.overdue.includes(task) && <span style={{ color: 'red' }}> Overdue</span>}
-            {data.signedOff.includes(task) && <span style={{ color: 'green' }}> Signed Off</span>}
+            {(data.overdue ?? []).includes(task) && <span style={{ color: 'red' }}> Overdue</span>}
+            {(data.signedOff ?? []).includes(task) && <span style={{ color: 'green' }}> Signed Off</span>}
           </li>
           ))}
       </ul>
