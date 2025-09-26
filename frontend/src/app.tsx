@@ -1,4 +1,5 @@
 import QCScheduler from './components/QCScheduler.tsx';
+import LotTracker from './components/LotTracker.tsx';
 import { useEffect } from 'react';
 
 export default function App() {
@@ -10,6 +11,7 @@ export default function App() {
     <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
       <h1>Quality Control Audit Tool</h1>
       <QCScheduler />
+      <LotTracker />
       {/* Additional modules go here */}
     </div>
   );
