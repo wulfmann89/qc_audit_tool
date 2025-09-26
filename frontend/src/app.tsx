@@ -1,6 +1,11 @@
 import QCScheduler from './components/QCScheduler.tsx';
+import { useEffect } from 'react';
 
 export default function App() {
+  useEffect(() => {
+    console.log("Frontend loaded");
+  }, []);
+  
   return (
     <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
       <h1>Quality Control Audit Tool</h1>
@@ -8,5 +13,4 @@ export default function App() {
       {/* Additional modules go here */}
     </div>
   );
-  console.log("Frontend loaded");
 }
