@@ -1,7 +1,7 @@
-import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import qcRoutes from '../routes/qc.js';
+import path from "path";
+import express from "express";
+import { fileURLToPath } from "url";
+import qcRoutes from "../routes/qc.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,15 +10,20 @@ const PORT = process.env.PORT || 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Serve static frontend
-app.use(express.static(path.join(__dirname, '../../frontend/dist')));
+// Serve static files from frontend/dist
+const distPath = path.resolve(__dirname, "../../frontend/dist");
+app.use(express.static(distPath));
 
 // Mount backend routes
-app.use('/api/qc', qcRoutes);
+app.use("/api/qc", qcRoutes);
 
-// Optional: serve index.html on root
-app.get('/', (_, res) => {
-  res.sendFile(path.join(__dirname, '../../frontend/dist/index.html'));
+// Catch-all route for SPA
+app.use((req, res, next) => {
+  if (req.method === "GET" && !req.path.startsWith("/api")) {
+    res.sendFile(path.join(distPath, "index.html"));
+  } else {
+    next();
+  }
 });
 
 app.listen(PORT, () => {

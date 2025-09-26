@@ -2,7 +2,8 @@
   "name": "qc-audit-tool",
   "version": "1.0.0",
   "scripts": {
-    "dev": "concurrently \"npm install --prefix frontend && npm run dev --prefix frontend\" \"nodemon backend/server/index.js\""
+    "dev": "concurrently \"npm install --prefix frontend && npm run dev --prefix frontend\" \"nodemon backend/server/index.js\"",
+    "build": "cd frontend && npm run build"
   },
   "type": "commonjs",
   "dependencies": {
