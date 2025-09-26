@@ -12,6 +12,7 @@ export default function App() {
       <h1>Quality Control Audit Tool</h1>
       <QCScheduler />
       <LotTracker />
+      <InventoryManager />
       {/* Additional modules go here */}
     </div>
   );
