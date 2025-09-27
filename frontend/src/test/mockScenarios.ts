@@ -14,3 +14,5 @@ const mockScenarios = [
     clinicalValue: "Useful for cardiovascular risk assessment",
   },
 ];
+
+export default mockScenarios;

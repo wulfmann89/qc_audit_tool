@@ -3,11 +3,27 @@ import LotTracker from "./components/LotTracker.tsx";
 import InventoryManager from "./components/InventoryManager.tsx";
 import CostAnalyzer from "./components/CostAnalyzer.tsx";
 import TestMenuEvaluator from "./components/TestMenuEvaluator.tsx";
-import { useEffect } from "react";
+import mockScenarios from "./test/mockScenarios.ts";
+import type { TestScenario } from "./types/TestScenario.ts"
+import { useEffect, useState } from "react";
 
 export default function App() {
+  const useMock = true;
+  const [scenarios, setScenarios] = useState<TestScenario[]>([]);
+
   useEffect(() => {
     console.log("Frontend loaded");
+    if (useMock) {
+      setScenarios(mockScenarios);
+    } else {
+      fetch('/api/qc/test-menu')
+        .then((res) => res.json())
+        .then((data) => setScenarios(data))
+        .catch((err) => {
+          console.error('Failed to load test scenarios:', err);
+          setScenarios(mockScenarios); // fallback
+        });
+    }
   }, []);
 
   return (
@@ -17,7 +33,7 @@ export default function App() {
       <LotTracker />
       <InventoryManager />
       <CostAnalyzer />
-      <TestMenuEvaluator scenarios={mockScenarios} />
+      <TestMenuEvaluator scenarios={scenarios} />
       {/* Additional modules go here */}
     </div>
   );
