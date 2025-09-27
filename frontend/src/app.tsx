@@ -4,7 +4,7 @@ import InventoryManager from "./components/InventoryManager.tsx";
 import CostAnalyzer from "./components/CostAnalyzer.tsx";
 import TestMenuEvaluator from "./components/TestMenuEvaluator.tsx";
 import mockScenarios from "./test/mockScenarios.ts";
-import type { TestScenario } from "./types/TestScenario.ts"
+import type { TestScenario } from "./types/TestScenario.ts";
 import { useEffect, useState } from "react";
 
 export default function App() {
@@ -16,11 +16,27 @@ export default function App() {
     if (useMock) {
       setScenarios(mockScenarios);
     } else {
-      fetch('/api/qc/test-menu')
+      fetch("/api/qc/test-menu")
         .then((res) => res.json())
-        .then((data) => setScenarios(data))
+        .then((data) => {
+          const transformed: TestScenario[] = data.tests.map(
+            (test: { name: string; score: number }, index: number) => ({
+              id: `TST${index + 1}`,
+              name: test.name,
+              cost: 0, // placeholder until backend adds cost
+              benefitScore: test.score,
+              clinicalValue:
+                data.decisions?.find(
+                  (d: { test: string; action: string; note: string }) =>
+                    d.test === test.name,
+                )?.note || "",
+            }),
+          );
+          setScenarios(transformed);
+        })
+
         .catch((err) => {
-          console.error('Failed to load test scenarios:', err);
+          console.error("Failed to load test scenarios:", err);
           setScenarios(mockScenarios); // fallback
         });
     }
