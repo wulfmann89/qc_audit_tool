@@ -73,6 +73,32 @@ router.get("/test-menu", (req, res) => {
   });
 });
 
+let testMenu = [
+  {
+    id: "TST001",
+    name: "Glucose",
+    cost: 1.25,
+    benefitScore: 8.5,
+    clinicalValue: "Useful for diabetes screening and monitoring",
+  },
+  {
+    id: "TST002",
+    name: "HbA1c",
+    cost: 2.75,
+    benefitScore: 9.2,
+    clinicalValue: "High diagnostic utility for diabetes management",
+  },
+];
+
+router.post("/test-menu", (req, res) => {
+  const { id, name, cost, benefitScore, clinicalValue } = req.body;
+  if (!id || !name) {
+    return res.status(400).json({ error: "Missing required fields" });
+  }
+  testMenu.push({ id, name, cost, benefitScore, clinicalValue });
+  res.status(201).json({ message: "Test scenario added", testMenu });
+});
+
 /**
  * CLIA Workflow Validator Module
  * Returns mock IQCP status and readiness score
@@ -92,12 +118,12 @@ router.get("/clia", (req, res) => {
 router.get("/workflow", (req, res) => {
   res.json({
     iqcp: {
-      preAnalytic: 'Sample integrity risk: low',
-      analytic: 'Instrument drift: moderate',
-      postAnalytic: 'Report delay: minimal',
-  },
-  checklist:['SOP uploaded', 'Logs complete', 'Audit score: 92%'],
-  })
-})
+      preAnalytic: "Sample integrity risk: low",
+      analytic: "Instrument drift: moderate",
+      postAnalytic: "Report delay: minimal",
+    },
+    checklist: ["SOP uploaded", "Logs complete", "Audit score: 92%"],
+  });
+});
 
 export default router;
