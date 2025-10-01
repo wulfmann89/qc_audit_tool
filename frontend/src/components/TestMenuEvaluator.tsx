@@ -13,7 +13,7 @@ interface Props {
   setScenarios?: (scenarios: TestScenario[]) => void;
 }
 
-export default function TestMenuEvaluator({ scenarios }: Props) {
+export default function TestMenuEvaluator({ scenarios, setScenarios }: Props) {
   const [form, setFormData] = useState({
     id: "",
     name: "",
