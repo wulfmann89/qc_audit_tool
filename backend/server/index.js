@@ -2,6 +2,7 @@ import path from "path";
 import express from "express";
 import { fileURLToPath } from "url";
 import qcRoutes from "../routes/qc.js";
+import app from "./app.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -28,4 +29,10 @@ app.use((req, res, next) => {
 
 app.listen(PORT, () => {
   console.log(`QC Audit Tool backend running on port ${PORT}`);
+});
+
+// backend/server/db.js
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
