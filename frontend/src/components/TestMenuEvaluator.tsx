@@ -10,6 +10,7 @@ interface TestScenario {
 
 interface Props {
   scenarios?: TestScenario[];
+  setScenarios?: (scenarios: TestScenario[]) => void;
 }
 
 export default function TestMenuEvaluator({ scenarios }: Props) {
@@ -38,8 +39,27 @@ export default function TestMenuEvaluator({ scenarios }: Props) {
         benefitScore: parseFloat(form.benefitScore),
       }),
     });
-    const result = await res.json();
-    console.log("Submitted", result);
+  const result = await res.json();
+  console.log("Submitted", result);
+
+  fetch("/api/qc/test-menu")
+    .then((res) => res.json())
+    .then((data) => {
+      const transformed: TestScenario[] = data.tests.map(
+        (test: { name: string; score: number }, index: number): TestScenario => ({
+          id: `TST${index + 1}`,
+          name: test.name,
+          cost: 0,
+          benefitScore: test.score,
+          clinicalValue:
+            data.decisions?.find(
+              (decision: { test: string; note: string }) => decision.test === test.name
+            )?.note || '',
+        })
+      );
+      setScenarios?.(transformed);
+    });
+
   };
 
   return (
