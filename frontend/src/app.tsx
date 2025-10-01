@@ -49,7 +49,7 @@ export default function App() {
       <LotTracker />
       <InventoryManager />
       <CostAnalyzer />
-      <TestMenuEvaluator scenarios={scenarios} />
+      <TestMenuEvaluator scenarios={scenarios} setScenarios={setScenarios} />
       {/* Additional modules go here */}
     </div>
   );
