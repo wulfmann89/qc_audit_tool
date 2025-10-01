@@ -6,4 +6,9 @@ CREATE TABLE IF NOT EXISTS test_menu (
   clinical_value TEXT,
   created_at TEXT DEFAULT CURRENT_TIMESTAMP
   description TEXT
-)
+);
+
+CREATE TABLE IF NOT EXISTS schema_version (
+  version TEXT PRIMARY KEY,
+  applied_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
